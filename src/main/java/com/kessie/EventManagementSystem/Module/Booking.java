@@ -26,7 +26,9 @@ public class Booking {
 
 //    @Column(nullable = false)
 //    private int payment;
+    @Column(updatable = false)
     private Date dateCreated;
+    @Column(updatable = false)
     private Date dateUpdated;
 
     public Booking() {
