@@ -2,6 +2,7 @@ package com.kessie.EventManagementSystem.Module;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -10,19 +11,19 @@ public class Event {
 
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
-    private long eventId;
+    private int eventId;
     @Column(nullable = false)
     private String eventName;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
     private String location;
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    @Column(nullable = false)
-    private Set<Ticket> tickets;
+//    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+//    @Column(nullable = false)
+//    private Set<Ticket> tickets;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private String eventDateTime;
+    private String eventDate;
     @ManyToOne
     @JoinColumn(name = "organizerId", nullable = false)
     private User organizer;
@@ -30,20 +31,20 @@ public class Event {
     private int capacity;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
-    private Date dateCreated;
+    private LocalDateTime dateCreated;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
-    private Date dateUpdated;
+    private LocalDateTime dateUpdated;
 
     public Event() {
     }
 
-    public Event(long eventId, String eventName, String description, String location, String eventDateTime, User organizer, int capacity) {
+    public Event(int eventId, String eventName, String description, String location, String eventDate, User organizer, int capacity) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.description = description;
         this.location = location;
-        this.eventDateTime = eventDateTime;
+        this.eventDate = eventDate;
         this.organizer = organizer;
         this.capacity = capacity;
     }
@@ -52,7 +53,7 @@ public class Event {
         return eventId;
     }
 
-    public void setEventId(long eventId) {
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
 
@@ -80,20 +81,20 @@ public class Event {
         this.location = location;
     }
 
-    public Set<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(Set<Ticket> tickets) {
-        this.tickets = tickets;
-    }
+//    public Set<Ticket> getTickets() {
+//        return tickets;
+//    }
+//
+//    public void setTickets(Set<Ticket> tickets) {
+//        this.tickets = tickets;
+//    }
 
     public String getEventDateTime() {
-        return eventDateTime;
+        return eventDate;
     }
 
     public void setEventDateTime(String dateTime) {
-        this.eventDateTime = dateTime;
+        this.eventDate = dateTime;
     }
 
     public User getOrganizer() {
@@ -112,19 +113,27 @@ public class Event {
         this.capacity = capacity;
     }
 
-    public Date getDateCreated() {
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getDateUpdated() {
+    public LocalDateTime getDateUpdated() {
         return dateUpdated;
     }
 
-    public void setDateUpdated(Date dateUpdated) {
+    public void setDateUpdated(LocalDateTime dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 }
