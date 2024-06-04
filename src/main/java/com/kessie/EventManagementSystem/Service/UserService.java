@@ -6,6 +6,7 @@ import com.kessie.EventManagementSystem.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -16,9 +17,9 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User addUser(String firstName, String lastName, Long phoneNumber, String address, String email, String username,
-                        String password, Set<Role> roles /*Date dateCreated*/){
-        long userId = randomNumbers();
+    public User addUser(String firstName, String lastName, long phoneNumber, String address, String email, String username,
+                        String password, Set<Role> roles /*Date dateCreated, Date dateUpdated*/){
+        int userId = randomNumbers();
         User user = new User();
         user.setUserId(userId);
         user.setFirstName(firstName);
@@ -29,7 +30,8 @@ public class UserService {
         user.setUsername(username);
         user.setPassword(password);
         user.setRoles(roles);
-        //user.setDateCreated(dateCreated);
+        user.setDateCreated(LocalDateTime.now());
+        user.setDateUpdated(LocalDateTime.now());
         userRepository.save(user);
 
         return user;
@@ -41,17 +43,17 @@ public class UserService {
 
     }
 
-    public User removeUser(long userId){
+    public User removeUser(int userId){
         User user = userRepository.findById(userId);
         userRepository.delete(user);
         //userRepository.deleteById(userId);
         return user;
     }
 
-    public long randomNumbers(){
+    public int randomNumbers(){
         Random random = new Random();
-        long max = 99999L;
-        long min = 10000L;
-        return random.nextLong(max - min + 1) + min;
+        int max = 99999;
+        int min = 10000;
+        return random.nextInt(max - min + 1) + min;
     }
 }

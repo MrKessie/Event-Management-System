@@ -16,31 +16,24 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@RestController
+//@RestController
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
 
-    public UserController(UserService userService){
-        this.userService = userService;
-    }
+//    public UserController(UserService userService){
+//        this.userService = userService;
+//    }
 
     @PostMapping("/add")
     @ResponseBody
-
-//    public ResponseEntity<User> createUser(@ResponseBody User user){
-//        Set<Role> roles = Arrays.stream(roleNames)
-//                .map(Role::valueOf) // Convert role name to Role enum
-//                .collect(Collectors.toSet());
-//        user.setRoles(roles); // Set the roles in the User object
-//        User createdUser = userService.createUser(user);
-//        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-//    }
     public User addUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam Long phoneNumber,
                         @RequestParam String address, @RequestParam String email, @RequestParam String username,
-                        @RequestParam String password, @RequestParam Set<Role> roles /*@RequestParam Date dateCreated*/){
-        User user = userService.addUser(firstName, lastName, phoneNumber, address, email, username, password, roles /*dateCreated*/);
+                        @RequestParam String password, @RequestParam Set<Role> role /*@RequestParam Date dateCreated,
+                        @RequestParam Date dateUpdated*/){
+        User user = userService.addUser(firstName, lastName, phoneNumber, address, email, username, password, role
+                    /*dateCreated, dateUpdated*/);
         return user;
     }
 
@@ -51,10 +44,9 @@ public class UserController {
         return users;
     }
 
-    @PostMapping("/remove")
+    @DeleteMapping("/remove")
     @ResponseBody
-    public User removeUser(@RequestParam long userId){
-//        User user =
+    public User removeUser(@RequestParam int userId){
         User user = userService.removeUser(userId);
         return user;
     }

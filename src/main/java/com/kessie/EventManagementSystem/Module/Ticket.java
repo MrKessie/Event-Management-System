@@ -1,14 +1,21 @@
 package com.kessie.EventManagementSystem.Module;
 
+import com.kessie.EventManagementSystem.Role;
+import com.kessie.EventManagementSystem.TicketType;
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class Ticket {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private long ticketId;
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "ticketType", joinColumns = @JoinColumn(name = "ticketId"))
     @Column(nullable = false)
-    private String ticketType;
+    private Set<TicketType> ticketType;
     @Column(nullable = false)
     private double price;
     @ManyToOne
@@ -20,7 +27,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String ticketType, double price, Event event, int availability) {
+    public Ticket(Set<TicketType> ticketType, double price, Event event, int availability) {
         this.ticketType = ticketType;
         this.price = price;
         this.event = event;
@@ -35,11 +42,11 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public String getTicketType() {
+    public Set<TicketType> getTicketType() {
         return ticketType;
     }
 
-    public void setTicketType(String ticketType) {
+    public void setTicketType(Set<TicketType> ticketType) {
         this.ticketType = ticketType;
     }
 

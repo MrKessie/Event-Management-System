@@ -20,15 +20,12 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     @Column(nullable = false)
     private Set<Ticket> tickets;
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Date dateTime;
+    private String eventDateTime;
     @ManyToOne
     @JoinColumn(name = "organizerId", nullable = false)
     private User organizer;
-    @ManyToOne
-    @JoinColumn(name = "categoryId", nullable = false)
-    //@Column(nullable = false)
-    private Category category;
     @Column(nullable = false)
     private int capacity;
     @Temporal(TemporalType.TIMESTAMP)
@@ -41,12 +38,12 @@ public class Event {
     public Event() {
     }
 
-    public Event(long eventId, String eventName, String description, String location, Date dateTime, User organizer, int capacity) {
+    public Event(long eventId, String eventName, String description, String location, String eventDateTime, User organizer, int capacity) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.description = description;
         this.location = location;
-        this.dateTime = dateTime;
+        this.eventDateTime = eventDateTime;
         this.organizer = organizer;
         this.capacity = capacity;
     }
@@ -91,12 +88,12 @@ public class Event {
         this.tickets = tickets;
     }
 
-    public Date getDateTime() {
-        return dateTime;
+    public String getEventDateTime() {
+        return eventDateTime;
     }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
+    public void setEventDateTime(String dateTime) {
+        this.eventDateTime = dateTime;
     }
 
     public User getOrganizer() {
@@ -105,14 +102,6 @@ public class Event {
 
     public void setOrganizer(User organizer) {
         this.organizer = organizer;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public int getCapacity() {

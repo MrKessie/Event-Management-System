@@ -2,7 +2,9 @@ package com.kessie.EventManagementSystem.Module;
 
 import com.kessie.EventManagementSystem.Role;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -26,17 +28,18 @@ public class User {
     private String password;
     @Column(nullable = false, unique = true)
     private String email;
-
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "userRoles", joinColumns = @JoinColumn(name = "userId"))
     private Set<Role> roles;
-    //@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     @Column(updatable = false)
-    private Date dateCreated;
-    //@Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime dateCreated;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     @Column(updatable = false)
-    private Date dateUpdated;
+    private LocalDateTime dateUpdated;
 
     public User() {
     }
@@ -120,19 +123,19 @@ public class User {
         this.roles = roles;
     }
 
-    public Date getDateCreated() {
+    public LocalDateTime getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDateTime dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getDateUpdated() {
+    public LocalDateTime getDateUpdated() {
         return dateUpdated;
     }
 
-    public void setDateUpdated(Date dateUpdated) {
+    public void setDateUpdated(LocalDateTime dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 }
