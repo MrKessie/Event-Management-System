@@ -1,41 +1,54 @@
 package com.kessie.EventManagementSystem.Module;
 
-import com.kessie.EventManagementSystem.Role;
+import com.kessie.EventManagementSystem.Enums.Role;
+import com.kessie.EventManagementSystem.Enums.UserType;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
 public class User {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "id")
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private long userId;
     @Column(nullable = false)
     private String firstName;
+
     @Column(nullable = false)
     private String lastName;
+
     @Column(nullable = false)
     private long phoneNumber;
+
     @Column(nullable = false)
     private String address;
+
     @Column(nullable = false, unique = true)
     private String username;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false, unique = true)
     private String email;
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "userRoles", joinColumns = @JoinColumn(name = "userId"))
-    private Set<Role> roles;
+    private Role roles;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
+
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime dateCreated;
+
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     @Column(updatable = false)
@@ -44,12 +57,14 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, Set<Role> roles) {
+    public User(String username, String password, String email, Role roles) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.roles = roles;
     }
+
+
 
     public long getUserId() {
         return userId;
@@ -115,12 +130,20 @@ public class User {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
+    public Role getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Role roles) {
         this.roles = roles;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 
     public LocalDateTime getDateCreated() {

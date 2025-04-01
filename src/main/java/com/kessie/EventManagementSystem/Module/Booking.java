@@ -1,6 +1,6 @@
 package com.kessie.EventManagementSystem.Module;
 
-import com.kessie.EventManagementSystem.BookingStatus;
+import com.kessie.EventManagementSystem.Enums.BookingStatus;
 import jakarta.persistence.*;
 
 import java.util.Date;

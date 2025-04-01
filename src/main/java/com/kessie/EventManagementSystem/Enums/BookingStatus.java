@@ -1,4 +1,4 @@
-package com.kessie.EventManagementSystem;
+package com.kessie.EventManagementSystem.Enums;
 
 public enum BookingStatus {
     PENDING("Pending"),

@@ -1,6 +1,6 @@
 package com.kessie.EventManagementSystem.Module;
 
-import com.kessie.EventManagementSystem.PaymentStatus;
+import com.kessie.EventManagementSystem.Enums.PaymentStatus;
 import jakarta.persistence.*;
 
 import java.util.Date;

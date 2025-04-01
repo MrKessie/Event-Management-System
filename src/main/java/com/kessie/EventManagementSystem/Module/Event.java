@@ -81,13 +81,6 @@ public class Event {
         this.location = location;
     }
 
-//    public Set<Ticket> getTickets() {
-//        return tickets;
-//    }
-//
-//    public void setTickets(Set<Ticket> tickets) {
-//        this.tickets = tickets;
-//    }
 
     public String getEventDateTime() {
         return eventDate;

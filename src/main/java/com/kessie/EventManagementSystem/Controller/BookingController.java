@@ -1,6 +1,6 @@
 package com.kessie.EventManagementSystem.Controller;
 
-import com.kessie.EventManagementSystem.BookingStatus;
+import com.kessie.EventManagementSystem.Enums.BookingStatus;
 import com.kessie.EventManagementSystem.Module.Booking;
 import com.kessie.EventManagementSystem.Module.Event;
 import com.kessie.EventManagementSystem.Module.User;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/booking")

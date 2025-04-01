@@ -1,7 +1,7 @@
 package com.kessie.EventManagementSystem.Module;
 
-import com.kessie.EventManagementSystem.Role;
-import com.kessie.EventManagementSystem.TicketType;
+import com.kessie.EventManagementSystem.Enums.Role;
+import com.kessie.EventManagementSystem.Enums.TicketType;
 import jakarta.persistence.*;
 
 import java.util.Set;

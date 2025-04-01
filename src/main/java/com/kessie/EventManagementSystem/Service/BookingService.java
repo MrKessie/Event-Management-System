@@ -1,6 +1,6 @@
 package com.kessie.EventManagementSystem.Service;
 
-import com.kessie.EventManagementSystem.BookingStatus;
+import com.kessie.EventManagementSystem.Enums.BookingStatus;
 import com.kessie.EventManagementSystem.Module.Booking;
 import com.kessie.EventManagementSystem.Module.Event;
 import com.kessie.EventManagementSystem.Module.User;
@@ -8,10 +8,8 @@ import com.kessie.EventManagementSystem.Repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 @Service
 public class BookingService {
