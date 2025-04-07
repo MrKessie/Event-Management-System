@@ -1,11 +1,13 @@
 package com.kessie.EventManagementSystem.Repository;
 
-import com.kessie.EventManagementSystem.Module.Event;
+import com.kessie.EventManagementSystem.Model.Event;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventRepository extends CrudRepository<Event, Integer> {
+public interface EventRepository extends JpaRepository<Event, Long> {
     Event findById(int eventId);
-    //Event findEventBy(int eventId);
+
+    boolean existsByEventId(Long eventId);
 }

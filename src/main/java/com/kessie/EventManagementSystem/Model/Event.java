@@ -1,37 +1,51 @@
-package com.kessie.EventManagementSystem.Module;
+package com.kessie.EventManagementSystem.Model;
 
+import com.kessie.EventManagementSystem.Enums.EventType;
+import com.kessie.EventManagementSystem.Enums.LifeCycle;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Set;
+import java.time.LocalTime;
 
 @Entity
 public class Event {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    private int eventId;
+    private Long eventId;
+
     @Column(nullable = false)
     private String eventName;
+
     @Column(nullable = false)
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    private EventType eventType;
+
+    @Enumerated(EnumType.STRING)
+    private LifeCycle lifeCycle;
+
     @Column(nullable = false)
     private String location;
-//    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-//    @Column(nullable = false)
-//    private Set<Ticket> tickets;
+
+    private int capacity;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private String eventDate;
+    private LocalDate eventDate;
+
+    @Column(nullable = false)
+    private LocalTime eventTime;
+
     @ManyToOne
     @JoinColumn(name = "organizerId", nullable = false)
     private User organizer;
-    @Column(nullable = false)
-    private int capacity;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
     private LocalDateTime dateCreated;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
     private LocalDateTime dateUpdated;
@@ -39,21 +53,12 @@ public class Event {
     public Event() {
     }
 
-    public Event(int eventId, String eventName, String description, String location, String eventDate, User organizer, int capacity) {
-        this.eventId = eventId;
-        this.eventName = eventName;
-        this.description = description;
-        this.location = location;
-        this.eventDate = eventDate;
-        this.organizer = organizer;
-        this.capacity = capacity;
-    }
 
-    public long getEventId() {
+    public Long getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(Long eventId) {
         this.eventId = eventId;
     }
 
@@ -81,15 +86,6 @@ public class Event {
         this.location = location;
     }
 
-
-    public String getEventDateTime() {
-        return eventDate;
-    }
-
-    public void setEventDateTime(String dateTime) {
-        this.eventDate = dateTime;
-    }
-
     public User getOrganizer() {
         return organizer;
     }
@@ -106,12 +102,36 @@ public class Event {
         this.capacity = capacity;
     }
 
-    public String getEventDate() {
+    public EventType getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
+    }
+
+    public LifeCycle getLifeCycle() {
+        return lifeCycle;
+    }
+
+    public void setLifeCycle(LifeCycle lifeCycle) {
+        this.lifeCycle = lifeCycle;
+    }
+
+    public LocalDate getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(String eventDate) {
+    public void setEventDate(LocalDate eventDate) {
         this.eventDate = eventDate;
+    }
+
+    public LocalTime getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(LocalTime eventTime) {
+        this.eventTime = eventTime;
     }
 
     public LocalDateTime getDateCreated() {

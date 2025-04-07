@@ -1,9 +1,9 @@
 package com.kessie.EventManagementSystem.Controller;
 
 import com.kessie.EventManagementSystem.Enums.BookingStatus;
-import com.kessie.EventManagementSystem.Module.Booking;
-import com.kessie.EventManagementSystem.Module.Event;
-import com.kessie.EventManagementSystem.Module.User;
+import com.kessie.EventManagementSystem.Model.Booking;
+import com.kessie.EventManagementSystem.Model.Event;
+import com.kessie.EventManagementSystem.Model.User;
 import com.kessie.EventManagementSystem.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

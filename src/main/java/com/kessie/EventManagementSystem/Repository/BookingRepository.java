@@ -1,6 +1,6 @@
 package com.kessie.EventManagementSystem.Repository;
 
-import com.kessie.EventManagementSystem.Module.Booking;
+import com.kessie.EventManagementSystem.Model.Booking;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

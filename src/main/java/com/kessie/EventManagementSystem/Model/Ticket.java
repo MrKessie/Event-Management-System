@@ -1,4 +1,4 @@
-package com.kessie.EventManagementSystem.Module;
+package com.kessie.EventManagementSystem.Model;
 
 import com.kessie.EventManagementSystem.Enums.Role;
 import com.kessie.EventManagementSystem.Enums.TicketType;

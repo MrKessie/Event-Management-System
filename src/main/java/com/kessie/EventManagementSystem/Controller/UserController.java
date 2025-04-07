@@ -1,7 +1,7 @@
 package com.kessie.EventManagementSystem.Controller;
 
 import com.kessie.EventManagementSystem.Enums.UserType;
-import com.kessie.EventManagementSystem.Module.User;
+import com.kessie.EventManagementSystem.Model.User;
 import com.kessie.EventManagementSystem.Enums.Role;
 import com.kessie.EventManagementSystem.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-@Controller
-//@RestController
+
+@RestController
 @RequestMapping("/setup/user")
 public class UserController {
     @Autowired
@@ -47,7 +46,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/allUsers")
+    @GetMapping("/all/users")
     @ResponseBody
     public List<User> allUsers(){
         List<User> users = userService.allUsers();

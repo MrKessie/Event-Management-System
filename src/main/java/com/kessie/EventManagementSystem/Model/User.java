@@ -1,4 +1,4 @@
-package com.kessie.EventManagementSystem.Module;
+package com.kessie.EventManagementSystem.Model;
 
 import com.kessie.EventManagementSystem.Enums.Role;
 import com.kessie.EventManagementSystem.Enums.UserType;
@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 public class User {

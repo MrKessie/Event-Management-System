@@ -1,7 +1,7 @@
 package com.kessie.EventManagementSystem.Service;
 
 import com.kessie.EventManagementSystem.Enums.UserType;
-import com.kessie.EventManagementSystem.Module.User;
+import com.kessie.EventManagementSystem.Model.User;
 import com.kessie.EventManagementSystem.Repository.UserRepository;
 import com.kessie.EventManagementSystem.Enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
 
 @Service
 public class UserService {
@@ -21,7 +20,6 @@ public class UserService {
     public User addUser(String firstName, String lastName, long phoneNumber, String address, String email, String username,
                         String password, Role roles, UserType userType){
         Long userId = randomNumbers();
-        System.out.println("User ID: " + userId);
         User user = new User();
         user.setUserId(userId);
         user.setFirstName(firstName);
@@ -45,19 +43,8 @@ public class UserService {
         return users;
     }
 
-    public User removeUser(int userId){
-        User user = userRepository.findByUserId(userId);
-        userRepository.delete(user);
-        //userRepository.deleteById(userId);
-        return user;
-    }
-
     public boolean existByEmail(String userId) {
         return userRepository.existsByEmail(userId);
-    }
-
-    public boolean findByUserId(long userId) {
-        return userRepository.findByUserId(userId);
     }
 
     public boolean existsByUserId(long userId) {
@@ -77,34 +64,34 @@ public class UserService {
 
         if (optionalUser.isPresent()) {
             User existingUser = optionalUser.get();
-//            existingUser.setUserId(updatedUser.getUserId());
+
             if(updatedUser.getFirstName() != null) {
                 existingUser.setFirstName(updatedUser.getFirstName());
-            };
+            }
             if(updatedUser.getLastName() != null) {
                 existingUser.setLastName(updatedUser.getLastName());
-            };
+            }
             if(updatedUser.getPhoneNumber() != 0) {
                 existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
-            };
+            }
             if(updatedUser.getAddress() != null) {
                 existingUser.setAddress(updatedUser.getAddress());
-            };
+            }
             if(updatedUser.getEmail() != null) {
                 existingUser.setEmail(updatedUser.getEmail());
             };
             if(updatedUser.getUsername() != null) {
                 existingUser.setUsername(updatedUser.getUsername());
-            };
+            }
             if(updatedUser.getUserType() != null) {
                 existingUser.setUserType(updatedUser.getUserType());
-            };
+            }
             if(updatedUser.getRoles() != null) {
                 existingUser.setRoles(updatedUser.getRoles());
-            };
+            }
             if(updatedUser.getDateUpdated() != null) {
                 existingUser.setDateUpdated(LocalDateTime.now());
-            };
+            }
 
             if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
 //                String encodedPassword = passwordEncoder.encode(updatedUser.getPassword());

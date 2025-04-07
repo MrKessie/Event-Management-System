@@ -1,7 +1,9 @@
-package com.kessie.EventManagementSystem.Module;
+package com.kessie.EventManagementSystem.Model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -9,26 +11,31 @@ public class Venue {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long venueId;
+
     @Column(nullable = false)
     private String venueName;
+
     @Column(nullable = false)
     private String venueAddress;
+
     @Column(nullable = false)
-    private String venueCapacity;
-    @ElementCollection
-    @CollectionTable(name = "venue_facilities", joinColumns = @JoinColumn(name = "venue_id"))
-    private Set<String> venueFacilities;
-//    @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL)
-//    private Set<Event> venueEvents;
+    private int venueCapacity;
+
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
+
+    @CreationTimestamp
+    private LocalDateTime dateUpdated;
+
+
 
     public Venue() {
     }
 
-    public Venue(String venueName, String venueAddress, String venueCapacity, Set<String> venueFacilities) {
+    public Venue(String venueName, String venueAddress, int venueCapacity) {
         this.venueName = venueName;
         this.venueAddress = venueAddress;
         this.venueCapacity = venueCapacity;
-        this.venueFacilities = venueFacilities;
     }
 
     public Long getVenueId() {
@@ -55,27 +62,27 @@ public class Venue {
         this.venueAddress = venueAddress;
     }
 
-    public String getVenueCapacity() {
+    public int getVenueCapacity() {
         return venueCapacity;
     }
 
-    public void setVenueCapacity(String venueCapacity) {
+    public void setVenueCapacity(int venueCapacity) {
         this.venueCapacity = venueCapacity;
     }
 
-    public Set<String> getVenueFacilities() {
-        return venueFacilities;
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
     }
 
-    public void setVenueFacilities(Set<String> venueFacilities) {
-        this.venueFacilities = venueFacilities;
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-//    public Set<Event> getVenueEvents() {
-//        return venueEvents;
-//    }
+    public LocalDateTime getDateUpdated() {
+        return dateUpdated;
+    }
 
-//    public void setVenueEvents(Set<Event> venueEvents) {
-//        this.venueEvents = venueEvents;
-//    }
+    public void setDateUpdated(LocalDateTime dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
 }
