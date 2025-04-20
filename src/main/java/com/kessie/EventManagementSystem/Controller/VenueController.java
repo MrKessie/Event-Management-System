@@ -35,7 +35,7 @@ public class VenueController {
             Map<String, Object> response = new HashMap<>();
             response.put("success", false);
             response.put("message", "Error creating venue: " + e.getMessage());
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
@@ -66,7 +66,7 @@ public class VenueController {
             Map<String, Object> response = new HashMap<>();
             response.put("success", false);
             response.put("message", "Error deleting venue: " + e.getMessage());
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
@@ -77,15 +77,15 @@ public class VenueController {
             Venue deletedVenue = venueService.updateVenue(venueId, updatedVenue);
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
-            response.put("message", "Venue with ID: " + venueId + " deleted successfully!");
-            response.put("data", deletedVenue);
+            response.put("message", "Venue with ID: " + venueId + " updated successfully!");
+            response.put("data", updatedVenue);
             return ResponseEntity.ok(response);
         }
         catch (Exception e) {
             Map<String, Object> response = new HashMap<>();
             response.put("success", false);
             response.put("message", "Error deleting venue: " + e.getMessage());
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 

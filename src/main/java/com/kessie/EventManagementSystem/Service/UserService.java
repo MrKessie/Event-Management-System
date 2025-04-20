@@ -5,6 +5,8 @@ import com.kessie.EventManagementSystem.Model.User;
 import com.kessie.EventManagementSystem.Repository.UserRepository;
 import com.kessie.EventManagementSystem.Enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,8 +19,8 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User addUser(String firstName, String lastName, long phoneNumber, String address, String email, String username,
-                        String password, Role roles, UserType userType){
+    public User createUser(String firstName, String lastName, long phoneNumber, String address, String email, String username,
+                           String password, Role roles, UserType userType){
         Long userId = randomNumbers();
         User user = new User();
         user.setUserId(userId);

@@ -3,6 +3,7 @@ package com.kessie.EventManagementSystem.Model;
 import com.kessie.EventManagementSystem.Enums.EventType;
 import com.kessie.EventManagementSystem.Enums.LifeCycle;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,10 +32,13 @@ public class Event {
 
     private int capacity;
 
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     @Column(nullable = false)
     private LocalDate eventDate;
 
+//    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     @Column(nullable = false)
     private LocalTime eventTime;
 
@@ -43,10 +47,12 @@ public class Event {
     private User organizer;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime dateCreated;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime dateUpdated;
 

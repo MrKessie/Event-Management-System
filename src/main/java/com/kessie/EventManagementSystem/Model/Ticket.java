@@ -1,52 +1,73 @@
 package com.kessie.EventManagementSystem.Model;
 
 import com.kessie.EventManagementSystem.Enums.Role;
+import com.kessie.EventManagementSystem.Enums.TicketStatus;
 import com.kessie.EventManagementSystem.Enums.TicketType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class Ticket {
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    private long ticketId;
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "ticketType", joinColumns = @JoinColumn(name = "ticketId"))
-    @Column(nullable = false)
-    private Set<TicketType> ticketType;
-    @Column(nullable = false)
-    private double price;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID ticketId;
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TicketType ticketType;
+
+    @Column(nullable = false)
+    private double price;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    private LocalDateTime purchaseDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TicketStatus ticketStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "user", nullable = false)
+    private User user;
     @Column(nullable = false)
     private int availability;
 
-    public Ticket() {
-    }
+    @Lob
+    private byte[] qrCode;
 
-    public Ticket(Set<TicketType> ticketType, double price, Event event, int availability) {
-        this.ticketType = ticketType;
-        this.price = price;
-        this.event = event;
-        this.availability = availability;
-    }
-
-    public long getTicketId() {
+    public UUID getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(long ticketId) {
+    public void setTicketId(UUID ticketId) {
         this.ticketId = ticketId;
     }
 
-    public Set<TicketType> getTicketType() {
+    public void setQrCode(byte[] qrCode) {
+        this.qrCode = qrCode;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public TicketType getTicketType() {
         return ticketType;
     }
 
-    public void setTicketType(Set<TicketType> ticketType) {
+    public void setTicketType(TicketType ticketType) {
         this.ticketType = ticketType;
     }
 
@@ -58,12 +79,28 @@ public class Ticket {
         this.price = price;
     }
 
-    public Event getEvent() {
-        return event;
+    public LocalDateTime getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setPurchaseDate(LocalDateTime purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public TicketStatus getTicketStatus() {
+        return ticketStatus;
+    }
+
+    public void setTicketStatus(TicketStatus ticketStatus) {
+        this.ticketStatus = ticketStatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getAvailability() {
@@ -73,4 +110,13 @@ public class Ticket {
     public void setAvailability(int availability) {
         this.availability = availability;
     }
+
+    public byte[] getQrCode() {
+        return qrCode;
+    }
+
+    public void setQRCode(byte[] qrCode) {
+        this.qrCode = qrCode;
+    }
 }
+

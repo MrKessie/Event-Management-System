@@ -21,9 +21,11 @@ public class Venue {
     @Column(nullable = false)
     private int venueCapacity;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private LocalDateTime dateCreated;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private LocalDateTime dateUpdated;
 

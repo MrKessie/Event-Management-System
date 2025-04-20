@@ -22,16 +22,16 @@ public class UserController {
     UserService userService;
 
 
-    @PostMapping("/add")
+    @PostMapping("/create")
     @ResponseBody
     public ResponseEntity<?> addUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam Long phoneNumber,
-                                  @RequestParam String address, @RequestParam String email, @RequestParam String username,
-                                  @RequestParam String password, @RequestParam Role role, @RequestParam UserType userType){
+                                     @RequestParam String address, @RequestParam String email, @RequestParam String username,
+                                     @RequestParam String password, @RequestParam Role role, @RequestParam UserType userType){
         try{
             if (userService.existByEmail(email)) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists.");
             }
-            User user = userService.addUser(firstName, lastName, phoneNumber, address, email, username, password, role, userType);
+            User user = userService.createUser(firstName, lastName, phoneNumber, address, email, username, password, role, userType);
             Map<String, Object> response = new HashMap<>();
             response.put("success", true);
             response.put("message", "Account created successfully. Proceed to Login.");

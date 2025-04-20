@@ -45,7 +45,7 @@ public class EventController {
             Map<String, Object> response = new HashMap<>();
             response.put("success", false);
             response.put("message", "Error creating event: " + e.getMessage());
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
@@ -76,7 +76,7 @@ public class EventController {
             Map<String, Object> response = new HashMap<>();
             response.put("success", false);
             response.put("message", "Error deleting event: " + e.getMessage());
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 

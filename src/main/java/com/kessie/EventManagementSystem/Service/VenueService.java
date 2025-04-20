@@ -26,6 +26,8 @@ public class VenueService {
         venue.setDateCreated(LocalDateTime.now());
         venue.setDateUpdated(LocalDateTime.now());
 
+        venueRepository.save(venue);
+
         return venue;
     }
 

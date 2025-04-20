@@ -45,8 +45,8 @@ public class EventService {
         return events;
     }
 
-    public Event removeEvent(int eventId){
-        Event event = eventRepository.findById(eventId);
+    public Event removeEvent(Long eventId){
+        Event event = eventRepository.findByEventId(eventId);
         eventRepository.delete(event);
         return event;
     }
